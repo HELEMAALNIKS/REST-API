@@ -13,10 +13,10 @@ router.get('/', async (req, res) => {
     }
 })
 //Getting one
-router.get('/:id', (req, res) => {
-    res.send(req.params.id)
-
-})
+router.get('/:id', getCity, (req, res) => {
+    res.json(res.city.name)
+    })
+    
 //Creating one
 router.post('/', async (req, res) => {
     const city = new City({
@@ -40,18 +40,36 @@ router.delete('/:id', (req, res) => {
     
 })
 
+// async function getCity(req, res, next) {
+//     let city
+//     try { 
+//         city = await City.findById(req.params.id)
+//         if (city == null) {
+//             return res.status(404).json({ message: 'Cannot find city'})
+//         }
+//     } catch (err) {
+//         return res.status(500).json({ message: err.message })
+
+//     }
+
+//     res.city = city
+//     next()
+// }
+
+
 async function getCity(req, res, next) {
-    try { city = await City.findById(req.params.id)
-        if (city == null) {
-            return res.status(404).json({ message: 'cannot find subscriber'})
-        }
+    let city
+    try {
+      city = await City.findById(req.params.id)
+      if (city == null) {
+        return res.status(404).json({ message: 'Cannot find city' })
+      }
     } catch (err) {
-        return res.status(500).json({ message: err.message })
-
+      return res.status(500).json({ message: err.message })
     }
-
+  
     res.city = city
     next()
-}
+  }
 
-module.exports = router
+  module.exports = router

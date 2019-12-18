@@ -14,4 +14,4 @@ app.use(express.json())
 const citiesRouter = require('./routes/cities.js')
 app.use('/cities', citiesRouter)
 
-app.listen(3000, () => console.log('Server started'))
+app.listen(8000, () => console.log('Server started'))

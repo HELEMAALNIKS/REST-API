@@ -2,10 +2,15 @@ GET http://localhost:3000/cities
 
 ###
 
+GET http://localhost:3000/cities/5dfa65e13c04771bf730de4df
+
+###
+
 POST http://localhost:3000/cities
 Content-Type: application/json
 
 {
     "name": "Berlin",
+    "population": "99999",
     "federalState": "Berlin"
 }
