@@ -1,1 +1,11 @@
 GET http://localhost:3000/cities
+
+###
+
+POST http://localhost:3000/cities
+Content-Type: application/json
+
+{
+    "name": "Berlin",
+    "federalState": "Berlin"
+}

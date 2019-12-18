@@ -1,9 +1,16 @@
 const express = require('express')
 const router = express.Router()
+const City = require('../models/city')
 
 //Getting all
-router.get('/', (req, res) => {
-    res.send('Hello')
+router.get('/', async (req, res) => {
+    try {
+        const cities = await City.find()
+        res.json(cities)
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+
+    }
 })
 //Getting one
 router.get('/:id', (req, res) => {
@@ -11,8 +18,18 @@ router.get('/:id', (req, res) => {
 
 })
 //Creating one
-router.post('/', (req, res) => {
-    
+router.post('/', async (req, res) => {
+    const city = new City({
+        name: req.body.name,
+        population: req.body.population,
+        federalState: req.body.federalState
+    })
+    try {
+        const newCity = await city.save() 
+        res.status(201).json(newCity)
+    } catch (err) {
+        res.status(400).json( {message: err.message })
+    }
 })
 //Updating one
 router.patch('/:id', (req, res) => {
@@ -22,5 +39,19 @@ router.patch('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
     
 })
+
+async function getCity(req, res, next) {
+    try { city = await City.findById(req.params.id)
+        if (city == null) {
+            return res.status(404).json({ message: 'cannot find subscriber'})
+        }
+    } catch (err) {
+        return res.status(500).json({ message: err.message })
+
+    }
+
+    res.city = city
+    next()
+}
 
 module.exports = router
