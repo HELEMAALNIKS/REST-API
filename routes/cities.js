@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
 })
 //Getting one
 router.get('/:id', getCity, (req, res) => {
-    res.json(res.city.name)
+    res.json(res.city)
     })
     
 //Creating one
@@ -32,13 +32,33 @@ router.post('/', async (req, res) => {
     }
 })
 //Updating one
-router.patch('/:id', (req, res) => {
-    
-})
+router.patch('/:id', getCity, async (req, res) => {
+    if (req.body.name != null) {
+      res.city.name = req.body.name
+    }
+    if (req.body.population != null) {
+      res.subscriber.population = req.body.population
+    }
+    if (req.body.federalState != null) {
+        res.subscriber.federalState = req.body.federalState
+      }
+    try {
+      const updatedCity = await res.city.save()
+      res.json(updatedCity)
+    } catch (err) {
+      res.status(400).json({ message: err.message })
+    }
+  })
+
 //Deleting one
-router.delete('/:id', (req, res) => {
-    
-})
+router.delete('/:id', getCity, async (req, res) => {
+    try {
+      await res.city.remove()
+      res.json({ message: 'Deleted City' })
+    } catch (err) {
+      res.status(500).json({ message: err.message })
+    }
+  })
 
 // async function getCity(req, res, next) {
 //     let city

@@ -2,7 +2,7 @@ GET http://localhost:8000/cities
 
 ###
 
-GET http://localhost:8000/cities/5dfa65e13c04771bf730de4df
+GET http://localhost:8000/cities/5dfa65e33c04771bf730de4f
 
 ###
 
@@ -13,4 +13,17 @@ Content-Type: application/json
     "name": "Berlin",
     "population": "99999",
     "federalState": "Berlin"
+}
+
+###
+
+DELETE http://localhost:8000/cities/5dfa65e23c04771bf730de4e
+
+###
+
+PATCH http://localhost:8000/cities/5dfa65e33c04771bf730de4f
+Content-Type: application/json
+
+{
+    "population": "Hamburg"
 }
