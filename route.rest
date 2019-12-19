@@ -1,12 +1,12 @@
-GET http://localhost:3000/cities
+GET http://localhost:8000/cities
 
 ###
 
-GET http://localhost:3000/cities/5dfa65e13c04771bf730de4df
+GET http://localhost:8000/cities/5dfa65e13c04771bf730de4df
 
 ###
 
-POST http://localhost:3000/cities
+POST http://localhost:8000/cities
 Content-Type: application/json
 
 {
