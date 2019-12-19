@@ -60,6 +60,14 @@ router.delete('/:id', getCity, async (req, res) => {
     }
   })
 
+  //options
+//   router.options('/:id', getCity, async (req, res) => {
+//       try {
+
+//       }
+
+  
+
 // async function getCity(req, res, next) {
 //     let city
 //     try { 
