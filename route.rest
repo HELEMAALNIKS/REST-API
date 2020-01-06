@@ -1,4 +1,11 @@
 GET http://localhost:8000/cities
+Content-Type: application/json
+
+{
+    "name": "Berlin",
+    "population": "99999",
+    "federalState": "Berlin"
+}
 
 ###
 
